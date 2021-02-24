@@ -40,6 +40,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 username = jwtUtil.extractUsername(jwt);
             } catch (Exception e) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Bad token");
+                chain.doFilter(request, response);
+                return;
             }
         }
 
@@ -49,6 +51,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 userDetails = this.userDetailsService.loadUserByUsername(username);
             } catch (Exception ignored) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Bad token");
+                chain.doFilter(request, response);
+                return;
             }
             if (userDetails != null) {
                 if (jwtUtil.validateToken(jwt, userDetails)) {
