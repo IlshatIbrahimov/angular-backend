@@ -60,10 +60,10 @@ public class MenuRunner implements CommandLineRunner {
 
         Item boul5 = Item.builder()
             .group(boul)
-            .name("")
+            .name("Шанти-боул с мини-дамплингами со свининой")
             .imageUrl("/boul/boul5.png")
-            .price("")
-            .size("")
+            .price("320")
+            .size("1 шт / 300 г")
             .build();
 
         Item boul6 = Item.builder()
@@ -77,5 +77,19 @@ public class MenuRunner implements CommandLineRunner {
         boul.setItemList(List.of(boul1, boul2, boul3, boul4, boul5, boul6));
 
         groupRepo.save(boul);
+
+        Group rolls = Group.builder().name("Роллы").build();
+
+        Item boul7 = Item.builder()
+            .group(rolls)
+            .name("Том Ям боул с дамплингами с креветкойs")
+            .imageUrl("/boul/boul6.png")
+            .price("320")
+            .size("1 шт / 370 г")
+            .build();
+
+        rolls.setItemList(List.of(boul7));
+
+        groupRepo.save(rolls);
     }
 }
